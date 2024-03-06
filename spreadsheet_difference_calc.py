@@ -28,6 +28,10 @@ def calculate_differences(df1, df2, column_name, column_sub, column_new, file_na
 
     st.success("Differences saved to " + file_name + ".csv")
 
+    # Add a download button for the generated CSV file
+    download_button_str = f"Download {file_name}.csv"
+    st.download_button(label=download_button_str, data=differences_df.to_csv(), file_name=file_name + ".csv", mime='text/csv')
+
 # Create the Streamlit app
 st.title("CSV Difference Calculator")
 st.text("Created by Jared Nicastro")
