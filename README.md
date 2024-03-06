@@ -1,15 +1,39 @@
-When should I use this application?:
+# CSV Difference Calculator
 
-Let's say you have two spreadsheets that share the same columns
+The CSV Difference Calculator is a Streamlit application designed to streamline the process of calculating differences between two CSV files. This tool is useful for users who need to compare data from different sources, identify discrepancies, and generate reports based on the differences.
 
-You would like to subtract a column in both spreadsheets
+## Features
 
-This application will ask for an input of a column that is the same on both csv's
+- **Upload CSV Files:** Users can upload two CSV files directly into the application.
+- **Select Columns:** Users can select the columns to use for merging, subtraction, and creating a new column.
+- **Automatic Calculation:** The application automatically calculates the differences between the uploaded CSV files when all necessary inputs are provided.
+- **Seamless User Experience:** With a streamlined interface, users can initiate the calculation process effortlessly.
 
-For example if we have two CSV's that share a column named 'Address' with all of the same addresses, we would input the column name 'Address'
+## Technologies Used
 
-It will then ask for the column that you would like subtracted.
+- Python
+- Streamlit
+- Pandas
 
-Your output will be a new spreadsheet that shows all of the old values, with a new column that subtracts the specified column.
+## Getting Started
 
-NOTE: CSV File 1 is being subtracted by CSV File 2
+To run the CSV Difference Calculator locally, follow these steps:
+
+1. Clone this repository.
+2. Install the required dependencies by running `pip install -r requirements.txt`.
+3. Run the application using `streamlit run spreadsheet_difference_calc.py`.
+
+## How to Use
+
+1. **Upload CSV Files:** Click on the "Upload CSV file 1" and "Upload CSV file 2" buttons to upload your CSV files.
+2. **Select Columns:** Choose the columns to use for merging, subtraction, and creating a new column from the dropdown menus.
+3. **Provide Spreadsheet Name:** Enter the desired name for the new spreadsheet.
+4. **Initiate Calculation:** The application automatically calculates the differences once all inputs are provided.
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
