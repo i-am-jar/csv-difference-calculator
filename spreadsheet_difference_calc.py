@@ -11,7 +11,14 @@ def calculate_differences(df1, df2, column_name, column_sub, column_new, file_na
     merged_df[column_sub+'_2'] = pd.to_numeric(merged_df[column_sub+'_2'].str.replace(',', ''), errors='coerce')
 
     # Calculate the difference between specified columns
-    merged_df[column_new] = merged_df[column_sub+'_1'] - merged_df[column_sub+'_2']
+    if operation == "Subtract":
+        merged_df[column_new] = merged_df[column_sub+'_1'] - merged_df[column_sub+'_2']
+    elif operation == "Add":
+        merged_df[column_new] = merged_df[column_sub+'_1'] + merged_df[column_sub+'_2']
+    elif operation == "Divide":
+        merged_df[column_new] = merged_df[column_sub+'_1'] / merged_df[column_sub+'_2']
+    elif operation == "Multiply":
+        merged_df[column_new] = merged_df[column_sub+'_1'] * merged_df[column_sub+'_2']
 
     # Filter out rows where there is no difference
     differences_df = merged_df[merged_df[column_new] != 0]
@@ -39,8 +46,9 @@ if uploaded_file1 and uploaded_file2 and file_name:
 # Create dropdowns for column selection
     column_options = df1.columns.tolist()
     column_name = st.selectbox("Select column to merge:", column_options)
-    column_sub = st.selectbox("Select column to subtract:", column_options)
+    column_sub = st.selectbox("Select column to perform operation:", column_options)
     column_new = st.text_input("Name of new column to create:")
+    operation = st.radio("Select operation:", ["Add","Subtract", "Divide", "Multiply"])
 
 if uploaded_file1 and uploaded_file2 and file_name and column_new :
     # Calculate differences when both files are uploaded
