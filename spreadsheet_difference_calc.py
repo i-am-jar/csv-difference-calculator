@@ -33,19 +33,28 @@ def calculate_differences(df1, df2, column_name, column_sub, column_new, file_na
     st.download_button(label=download_button_str, data=differences_df.to_csv(), file_name=file_name + ".csv", mime='text/csv')
 
 # Create the Streamlit app
-st.title("CSV Difference Calculator")
+st.title("CSV/Excel Operations Calculator")
 st.text("Created by Jared Nicastro")
 
 # File upload
-uploaded_file1 = st.file_uploader("Upload CSV file 1", type=["csv"])
-uploaded_file2 = st.file_uploader("Upload CSV file 2", type=["csv"])
+uploaded_file1 = st.file_uploader("Upload File 1", type=["csv", "xlsx", "xls"])
+uploaded_file2 = st.file_uploader("Upload File 2", type=["csv", "xlsx", "xls"])
 file_name = st.text_input("What would you like the name of your new spreadsheet to be?")
 
 # Check if both files have been uploaded
 if uploaded_file1 and uploaded_file2 and file_name:
-    # Read the CSV files into DataFrames
-    df1 = pd.read_csv(uploaded_file1)
-    df2 = pd.read_csv(uploaded_file2)
+    # Read the Excel files into DataFrames
+    if uploaded_file1:
+        if uploaded_file1.name.endswith('.csv'):
+            df1 = pd.read_csv(uploaded_file1)
+        else:
+            df1 = pd.read_excel(uploaded_file1)
+
+if uploaded_file2:
+    if uploaded_file2.name.endswith('.csv'):
+        df2 = pd.read_csv(uploaded_file2)
+    else:
+        df2 = pd.read_excel(uploaded_file2)
 
 # Create dropdowns for column selection
     column_options = df1.columns.tolist()
